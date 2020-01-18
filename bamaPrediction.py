@@ -22,10 +22,7 @@ try:
         x1.append(str(item[0]))
     le.fit(x1)
     z = le.transform(x1)
-    # print(z)
     reversed=le.inverse_transform(z)
-
-
 
     # -------------------------------------------------------------
     name=[]
@@ -42,14 +39,15 @@ try:
 
     clf=tree.DecisionTreeClassifier()
     clf=clf.fit(x,y)
-    new_data=[['پژو،206،تیپ5', 0, "1398"]]
+    new_data=[['رنو،تندر90،E2', 0, "1395"]]
     if new_data[0][0] in reversed:
         result = np.where(reversed == new_data[0][0])
         new_data=[[z[result[0][0]],new_data[0][1],new_data[0][2]]]
+    else:
+        print("there is no data available for this car")
     answer=clf.predict(new_data)
     print(answer)
-    # else:
-    #     print("there is no data available for this car")
+
 
 
 except mysql.connector.Error as err:

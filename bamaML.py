@@ -12,8 +12,13 @@ base_url="https://bama.ir/car/all-brands/all-models/all-trims?page="
 l = []
 
 # --------------------------------------------scrapping-----------------------------------------
+r = requests.get ( base_url + "1")
+c = r.content
+soup=BeautifulSoup(c , "html.parser")
+total_page = soup.find("h4").text.split()
+pages=int((int(total_page[1].replace(",",""))/35))
 
-for page in range(1, 1*10, 10):
+for page in range(1, pages*10, 10):
 
     # load a webpage
     r = requests.get ( base_url + str ( page ))
